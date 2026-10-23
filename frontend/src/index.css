@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    /* Soft brand glow behind the header; fixed so it doesn't scroll with long pages. */
+    background-image: radial-gradient(56rem 28rem at 50% -12rem, rgb(99 102 241 / 0.09), transparent 70%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+
+  kbd {
+    @apply rounded border border-slate-200 bg-slate-50 px-1 py-px font-sans text-[10px] font-medium text-slate-500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* --- Buttons ------------------------------------------------------------ */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition duration-150
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
+      enabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-slate-900 text-white shadow-soft hover:bg-slate-800;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-slate-700 shadow-soft ring-1 ring-inset ring-slate-200 hover:bg-slate-50 hover:text-slate-900;
+  }
+  .btn-ai {
+    @apply btn bg-gradient-to-r from-brand-600 to-violet-600 text-white shadow-glow
+      hover:from-brand-500 hover:to-violet-500;
+  }
+
+  /* --- Forms -------------------------------------------------------------- */
+  .input {
+    @apply block w-full rounded-lg border-0 bg-white px-3 py-2 text-sm text-slate-900 shadow-soft ring-1 ring-inset ring-slate-200
+      transition placeholder:text-slate-400 hover:ring-slate-300
+      focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-500
+      disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium text-slate-600;
+  }
+
+  /* --- Surfaces ----------------------------------------------------------- */
+  .card {
+    @apply rounded-xl border border-slate-200/80 bg-white shadow-soft;
+  }
+
+  /* --- Typography --------------------------------------------------------- */
+  .page-title {
+    @apply text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl;
+  }
+  .page-subtitle {
+    @apply mt-2 max-w-2xl text-sm leading-6 text-slate-500;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-white/80 px-2.5 py-1 text-xs font-medium text-slate-600
+      shadow-soft ring-1 ring-inset ring-slate-200/80 backdrop-blur;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-600 via-violet-600 to-fuchsia-500 bg-clip-text text-transparent;
+  }
+
+  /* --- Segmented control (tabs / filters) --------------------------------- */
+  .segmented {
+    @apply inline-flex items-center gap-1 rounded-xl bg-slate-100/80 p-1 ring-1 ring-inset ring-slate-200/70;
+  }
+  .segmented-item {
+    @apply inline-flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium text-slate-500 transition
+      hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500;
+  }
+  .segmented-item-active {
+    @apply bg-white text-slate-900 shadow-soft ring-1 ring-slate-200/80;
+  }
+}
